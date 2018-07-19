@@ -1,12 +1,22 @@
-TWITTER_APP_KEY = "RNYgDc0vV2ti44kmuJpSf8uOq"
-TWITTER_APP_SECRET = "71MfkUJMcUOmCSLyoR9v6cqXBTUs135eY0ef0MxnXgRX2bMlCm"
-TWITTER_KEY = "299176646-Gt06nv7gNVN50fd4V8RXhGs6KYaxXSfp0uIftc9y"
-TWITTER_SECRET = "alSU4FwGSNCB3d4rj5JCEMRCYzTX6Y2cIwrSwkJSBZG3a"
-ES_HOST = {"host": "elasticsearch", "port": 9200}
-api_key = 'je5Rmg62Xff7wvY5JAAvDxHreA8IIo8X' # clé pour géocoder
-INDEX_NAME = "tweeter"
-DOC_TYPE = "tweet"
-TRACK_TERMS = "Equipe de France"
+#----------------------------------------------------------------------------------------------------------------------
+#                                               FICHIER DE CONFIGURATION
+#-----------------------------------------------------------------------------------------------------------------------
+#********************Twitter creditencials******************************************************************************
+#---------------------ENTREZ ICI VOS INFORMATIONS API DEVELOPEUR
+TWITTER_APP_KEY = "" # Consumer Key (API Key)
+TWITTER_APP_SECRET = "" # Consumer Secret (API Secret)
+TWITTER_KEY = "" # Access Token
+TWITTER_SECRET = "alSU4FwGSNCB3d4rj5JCEMRCYzTX6Y2cIwrSwkJSBZG3a" # Access Token Secret
+#***********************************************************************************************************************
+#*********************************CONFIGURATION ELASTICSEARCH***********************************************************
+ES_HOST = {"host": "elasticsearch", "port": 9200} # NE PAS CHANGER
+INDEX_NAME = "tweeter" #METTRE ICI LE NOM DE INDEX
+DOC_TYPE = "tweet" #NOM DU DOCUEMENT DE LINDEX
 
+#*****************************GEOCODAGE*********************************************************************************
+#----------------------------CLE POUR GEOCODAGE-------------------------------------------------------------------------
+api_key = '' # ENTREZ ICI VOTRE CLE
+#*****************************CONFIGURATION DU FLUX STREAMING***********************************************************
+TRACK_TERMS = "#FRAURU" #TERME 0 TRACKER DANS LE FLUX TWITTER
 
 
