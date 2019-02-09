@@ -17,6 +17,6 @@ DOC_TYPE = "tweet" #NOM DU DOCUEMENT DE LINDEX
 #----------------------------CLE POUR GEOCODAGE-------------------------------------------------------------------------
 api_key = '' # ENTREZ ICI VOTRE CLE
 #*****************************CONFIGURATION DU FLUX STREAMING***********************************************************
-TRACK_TERMS = "#FRAURU" #TERME 0 TRACKER DANS LE FLUX TWITTER
+TRACK_TERMS = "" #TERME 0 TRACKER DANS LE FLUX TWITTER
 
 
