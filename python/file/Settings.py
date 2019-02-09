@@ -6,7 +6,7 @@
 TWITTER_APP_KEY = "" # Consumer Key (API Key)
 TWITTER_APP_SECRET = "" # Consumer Secret (API Secret)
 TWITTER_KEY = "" # Access Token
-TWITTER_SECRET = "alSU4FwGSNCB3d4rj5JCEMRCYzTX6Y2cIwrSwkJSBZG3a" # Access Token Secret
+TWITTER_SECRET = "" # Access Token Secret
 #***********************************************************************************************************************
 #*********************************CONFIGURATION ELASTICSEARCH***********************************************************
 ES_HOST = {"host": "elasticsearch", "port": 9200} # NE PAS CHANGER
