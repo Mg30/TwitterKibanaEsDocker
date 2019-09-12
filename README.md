@@ -4,8 +4,8 @@ POC qui permet d'initialiser un streaming à partir de l'API twitter et de visua
 ## Pré requis
 - docker
 - python 3.5
--Compte API developpeur sur twitter:
-  => Créer un compte sur une application de géocodage pa exemple ici : https://developer.mapquest.com/
+- Compte API developpeur sur twitter
+ -Créer un compte sur une application de géocodage pa exemple ici : https://developer.mapquest.com/
 
 ## Utilisation 
 
