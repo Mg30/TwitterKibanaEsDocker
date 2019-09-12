@@ -12,9 +12,10 @@ POC qui permet d'initialiser un streaming à partir de l'API twitter et de visua
 1- Cloner le répo
 
 2- Modifier le fichier Settings dans Streaming/python/file:
-    - Remplir les champs TWITTER_* avec les clés API de votre compte développeur.
-    - Renseigner le TRACK_TERMS qui est le terme à rechercher pour le flux streaming.
-    - Renseinger la clé d'API pour le geocodage
+
+    1- Remplir les champs TWITTER_* avec les clés API de votre compte développeur.
+    2- Renseigner le TRACK_TERMS qui est le terme à rechercher pour le flux streaming.
+    3- Renseinger la clé d'API pour le geocodage
   
 
 3-Ensuite placer vous dans le dossier docker_kibana en utilisant une console puis lancez la commande suivante :
