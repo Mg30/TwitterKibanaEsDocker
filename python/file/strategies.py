@@ -1,8 +1,8 @@
 from elasticsearch import Elasticsearch
 
-class Elastic:
-    """Classe qui permet de communiquer avec api elasticsearch"""
 
+class ElasticStrategy:
+    """Classe qui permet de communiquer avec api elasticsearch"""
 
     def __init__(self, port):
         self.es = Elasticsearch(hosts=[port])
@@ -49,7 +49,7 @@ class Elastic:
         resp = self.es.indices.delete(index=index_name)
         print(resp)
 
-    def restore(rep_name,snap_name,body=None):
+    def restore(self,rep_name,snap_name,body=None):
         snap = elasticsearch.client.SnapshotClient(self.es)
         resp = snap.restore(repository=rep_name,snapshot=snap_name,wait_for_completion=True)
         print(resp)

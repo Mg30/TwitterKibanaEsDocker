@@ -1,6 +1,5 @@
 import tweepy
-from textblob import TextBlob
-from textblob_fr import PatternTagger, PatternAnalyzer
+f
 from Settings import ES_HOST,api_key,TRACK_TERMS,INDEX_NAME,DOC_TYPE
 import geocoder
 import json
@@ -8,31 +7,21 @@ import re
 
  
 class StreamListener(tweepy.StreamListener):
-    """ Classe qui va gérer le flux de données issus de twitter"""
+    """ Classe qui herite de streamlistener qui va gérer le flux de données issus de twitter"""
 
     def on_status(self, status):
         """fonction qu permet d'effectuer une action pour chaque tweet arrivant de l'api"""
-        if hasattr(status,'retweeted_status'):
+
+        if hasattr(status,'retweeted_status'): # excluding retweet
             return
-        #if regex.search(status.text.lower()):
-        blob = TextBlob(status.text,pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
-        sent = blob.sentiment
-        item = dict()
-        if sent[0] < 0:
-            item["sentiment"] = "negatif"
-        elif sent[0] == 0:
-            item["sentiment"] = "neutre"
-        else:
-            item["sentiment"] = "positif"
 
+# on ajoute au dict le texte du tweet
         item["text"] = status.text
-
+# on ajoute sa date de cr"ation
         item["time"] = status.created_at
-        m = regex.search(status.text.lower())
-        if m:
-            item["score"] = m.group(0)
+        #bloc qui permet de récuprer la géolocation
         try:
-            g = geocoder.mapquest(status.user.location, key=api_key)
+            g = geocoder.mapquest(status.user.location, key=Settings.api_key)
             if g.lat or g.lng is not None:
                 item["location"] = {"lat": g.lat, "lon": g.lng}
             else:
@@ -40,8 +29,8 @@ class StreamListener(tweepy.StreamListener):
 
         except json.decoder.JSONDecodeError:
             pass
-        print(item)
-        es.document_add(INDEX_NAME,DOC_TYPE,item)
+        #envoie du tweet à l'indice ES
+        es.document_add(Settings.INDEX_NAME,Settings.DOC_TYPE,item)
         #else:
             #return
 

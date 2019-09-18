@@ -8,51 +8,7 @@ from textblob_fr import PatternTagger, PatternAnalyzer
 from ElasticApi import Elastic # import de la classe personnalisé permettant de communquer avec ES
 
 
-class StreamListener(tweepy.StreamListener):
-    """ Classe qui herite de streamlistener qui va gérer le flux de données issus de twitter"""
 
-    def on_status(self, status):
-        """fonction qu permet d'effectuer une action pour chaque tweet arrivant de l'api"""
-
-#si le tweet est un retweet il n'est pas pris en compte
-        if hasattr(status,'retweeted_status'):
-            return
-        #initiliasation d'une blob qui permet d'analyser le texte
-        blob = TextBlob(status.text,pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
-        sent = blob.sentiment
-        #création d'un dictionnaire pour stocker le tweet
-        item = dict()
-        #test pour savoir si le texte est possitif négatif ou neutre en fonction du score
-        if sent[0] < 0:
-            item["sentiment"] = "negatif"
-        elif sent[0] == 0:
-            item["sentiment"] = "neutre"
-        else:
-            item["sentiment"] = "positif"
-# on ajoute au dict le texte du tweet
-        item["text"] = status.text
-# on ajoute sa date de cr"ation
-        item["time"] = status.created_at
-        #bloc qui permet de récuprer la géolocation
-        try:
-            g = geocoder.mapquest(status.user.location, key=Settings.api_key)
-            if g.lat or g.lng is not None:
-                item["location"] = {"lat": g.lat, "lon": g.lng}
-            else:
-                item["location"] = {"lat": 0, "lon": 0}
-
-        except json.decoder.JSONDecodeError:
-            pass
-        #envoie du tweet à l'indice ES
-        es.document_add(Settings.INDEX_NAME,Settings.DOC_TYPE,item)
-        #else:
-            #return
-
-    def on_error(self, status_code):
-        """fonction qui gère les erreurs issus de l'api twitter"""
-        if status_code == 420:
-            print("fin")
-            return False
 
 #***********************DEBUT DU PROGRAMME****************************************************************************************
 
