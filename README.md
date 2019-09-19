@@ -91,11 +91,9 @@ You will need to pass a JSON object defining you mapping to the INDEX_MAPPING en
 
 TWEETS_ATTRS=["text","user.location"]
 
-INDEX_NAME=tweet
-
  INDEX_MAPPING=
 
-    {"mappings": {"tweet":{"properties": {"sentiment":{"type": "keyword"},"text":{"type": "text"},"location":{"type": "geo_point"}}}}}
+    {"mappings": {"tweet":{"properties": {"sentiment":{"type": "keyword"},"text":{"type": "text"},"user.location":{"type": "geo_point"}}}}}
 
 
 ## Start the app
