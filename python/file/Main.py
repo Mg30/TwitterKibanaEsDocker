@@ -33,5 +33,4 @@ api = tweepy.API(auth)
 # Initializing the stream
 stream_listener = CustomStreamListener(pipeline=pipeline)
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
-print(stream)
 stream.filter(track=json.loads(os.getenv('TRACK_TERMS')))

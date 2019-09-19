@@ -31,16 +31,16 @@ class DefaultPipeline(object):
             for a in tweetAttrs:
                 if a == 'user.location':
                     g = self.geocoder(
-                        self.tweet[a], key=os.getenv('GEOCODE_TOKEN'))
+                        self.tweet['user.location'], key=os.getenv('GEOCODE_TOKEN'))
                     g = g.json
                     try:
                         if g['lat'] or g['lng'] is not None:
-                            self.item["location"] = {
+                            self.item["user.location"] = {
                                 "lat": g['lat'], "lon": g['lng']}
                         else:
-                            self.item["location"] = {"lat": 0, "lon": 0}
+                            self.item["user.location"] = {"lat": 0, "lon": 0}
                     except:
-                        self.item["location"] = {"lat": 0, "lon": 0}
+                        self.item["user.location"] = {"lat": 0, "lon": 0}
                         pass
                 else:
                     self.item[a] = self.tweet[a]

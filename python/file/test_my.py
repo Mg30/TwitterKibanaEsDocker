@@ -14,7 +14,7 @@ os.environ['ES_PORT'] = '{"host": "elasticsearch", "port": 9200}'
 os.environ['INDEX_NAME'] = 'twitter'
 os.environ['INDEX_MAPPING'] = '{"mappings": {"tweet":{"properties": {"sentiment":{"type": "keyword"},"text":{"type": "text"},"location":{"type": "geo_point"},"created_at":{"type": "date"}}}}}'
 os.environ['TWEETS_ATTRS'] = '["text", "user.location"]'
-os.environ['GEOCODE_TOKEN'] = ''
+os.environ['GEOCODE_TOKEN'] = 'pk.eyJ1IjoicmFuZG9tYWNjZXNzIiwiYSI6ImNqcDh3ZTlpeTA0MXczcHA2cnI5ZGZudnAifQ.aj4dmYSIxfGxciDq30ZBOw'
 
 
 @pytest.fixture
@@ -63,4 +63,4 @@ def test_fetchTweetAttributs_geo(tweet, geocoder_strat):
     t = p.flatten_dict(tweet)
     p.tweet = t
     p.fetchTweetAttributs(os.getenv('TWEETS_ATTRS'))
-    assert 'location' in p.item.keys()
+    assert 'user.location' in p.item.keys()
