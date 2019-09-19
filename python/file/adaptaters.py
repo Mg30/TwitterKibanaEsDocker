@@ -1,6 +1,7 @@
 from elasticsearch import Elasticsearch
 from abc import ABC, abstractmethod
 
+
 class StorageAdaptater(ABC):
 
     @abstractmethod
@@ -46,6 +47,5 @@ class ElasticSearchAdaptater(StorageAdaptater):
 
     def send(self, data):
         '''Wrapper method to add one document to es index'''
-        resp = self.es.index(index=self.kwargs['index_name'],
+        self.es.index(index=self.kwargs['index_name'],
                       doc_type='tweet', body=data)
-        print(resp)

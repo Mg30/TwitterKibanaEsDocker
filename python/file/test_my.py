@@ -3,6 +3,18 @@ from tweetAnalyser import TweetBlobAnalyser
 import json
 import pytest
 import geocoder
+import os
+
+os.environ['TWITTER_APP_KEY'] = ''
+os.environ['TWITTER_APP_SECRET'] = ''
+os.environ['TWITTER_KEY'] = ''
+os.environ['TWITTER_SECRET'] = ''
+os.environ['TRACK_TERMS'] = ''
+os.environ['ES_PORT'] = '{"host": "elasticsearch", "port": 9200}'
+os.environ['INDEX_NAME'] = 'twitter'
+os.environ['INDEX_MAPPING'] = '{"mappings": {"tweet":{"properties": {"sentiment":{"type": "keyword"},"text":{"type": "text"},"location":{"type": "geo_point"},"created_at":{"type": "date"}}}}}'
+os.environ['TWEETS_ATTRS'] = '["text", "user.location"]'
+os.environ['GEOCODE_TOKEN'] = ''
 
 
 @pytest.fixture
@@ -18,8 +30,9 @@ def geocoder_strat():
 
 
 def test_analyser(tweet):
-    b = TweetBlobAnalyser(tweet['text'])
-    assert b.analyse() == 0
+    b = TweetBlobAnalyser()
+    b.analyse(tweet['text'])
+    assert b.sentiment == 0
 
 
 def test_pipeline_transform(tweet):
@@ -31,21 +44,23 @@ def test_pipeline_transform(tweet):
 
 def test_fetchTweetAttributs(tweet):
     p = DefaultPipeline(analyser=TweetBlobAnalyser)
-    p.tweet = tweet
-    p.fetchTweetAttributs(['created_at', 'text'])
-    assert 'created_at' in p.item.keys()
+    t = p.flatten_dict(tweet)
+    p.tweet = t
+    p.fetchTweetAttributs(os.getenv('TWEETS_ATTRS'))
+    assert 'user.location' in p.item.keys()
     assert 'text' in p.item.keys()
 
 
 def test_flatten_dict(tweet):
-    p = DefaultPipeline()
+    p = DefaultPipeline(analyser=TweetBlobAnalyser)
     t = p.flatten_dict(tweet)
     p.tweet = t
     assert 'user.location' in p.tweet.keys()
+
 
 def test_fetchTweetAttributs_geo(tweet, geocoder_strat):
     p = DefaultPipeline(analyser=TweetBlobAnalyser, geocoder=geocoder_strat)
     t = p.flatten_dict(tweet)
     p.tweet = t
-    p.fetchTweetAttributs(['user.location'])
+    p.fetchTweetAttributs(os.getenv('TWEETS_ATTRS'))
     assert 'location' in p.item.keys()
