@@ -6,7 +6,7 @@ The project ship with a docker integration in order to ease the reusabilty for d
 # Dashboard example
 Here is an example of a dashboard
 
-
+![PetitionIndex](dashboard.PNG)
 
 # How to use the application
 
