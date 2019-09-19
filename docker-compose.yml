@@ -16,7 +16,10 @@ services:
     build: ./python
     depends_on:
       - elasticsearch
-    command: ["python","./Main.py"]
+    command: ["python","./main.py"]
+    env_file:
+      - api.env
+    
 
 
       

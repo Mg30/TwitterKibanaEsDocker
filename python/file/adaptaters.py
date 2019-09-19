@@ -14,7 +14,6 @@ class StorageAdaptater(ABC):
 
 class ElasticSearchAdaptater(StorageAdaptater):
     '''Adaptater for the ElasticStrategy
-    Need an ElasticStrategy well configured on init method
     '''
 
     def __init__(self, **kwargs):
@@ -36,14 +35,17 @@ class ElasticSearchAdaptater(StorageAdaptater):
         while not connected:
             if not self.es.ping():
                 print("Elasticsearch est en cours de démarrage...")
-                time.sleep(5)
+                time.sleep(2)
             else:
                 connected = True
-
-        self.es.indices.create(
+        try:
+            self.es.indices.create(
                 index=self.kwargs['index_name'], body=self.kwargs['mapping'])
+        except:
+            pass
 
     def send(self, data):
         '''Wrapper method to add one document to es index'''
-        self.es.index(index=self.kwargs['index_name'],
-                      doc_type='tweets', body=data,)
+        resp = self.es.index(index=self.kwargs['index_name'],
+                      doc_type='tweet', body=data)
+        print(resp)

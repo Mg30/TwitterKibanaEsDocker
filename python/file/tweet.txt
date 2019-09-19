@@ -6,7 +6,7 @@
       "id": 2244994945,
       "name": "Twitter Dev",
       "screen_name": "TwitterDev",
-      "location": "Internet",
+      "location": "Paris",
       "url": "https:\/\/dev.twitter.com\/",
       "description": "Your official source for Twitter Platform news, updates & events. Need technical help? Visit https:\/\/twittercommunity.com\/ \u2328\ufe0f #TapIntoTwitter"
     },

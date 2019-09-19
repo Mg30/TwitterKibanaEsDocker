@@ -1,0 +1,7 @@
+.vscode/
+venv/
+__pycache__/
+.pytest_cache/
+**Settings.py
+python/api.env
+api.env

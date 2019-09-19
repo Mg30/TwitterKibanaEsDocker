@@ -7,10 +7,10 @@ class TweetBlobAnalyser(object):
     constructor take @tweet : string
     '''
 
-    def __init__(self, tweet):
+    def __init__(self):
+        self.sentiment = None
 
-        self.blob = TextBlob(tweet,pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
-        self.sentiment = self.analyse()
-
-    def analyse(self):
-        return self.blob.sentiment[0]
+    def analyse(self,tweet):
+        blob = TextBlob(tweet, pos_tagger=PatternTagger(),
+                        analyzer=PatternAnalyzer())
+        self.sentiment = blob.sentiment[0]

@@ -1,10 +1,12 @@
-FROM python:3.6
+FROM python:3.7
 RUN apt-get update
 COPY /file/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-COPY /file/ElasticApi.py ./
-COPY /file/Main.py ./
-COPY /file/Settings.py ./
+COPY /file/adaptaters.py ./
+COPY /file/main.py ./
+COPY /file/twitterListener.py ./
+COPY /file/pipelines.py ./
+COPY /file/tweetAnalyser.py ./
 
 
 
