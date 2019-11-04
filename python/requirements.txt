@@ -17,7 +17,7 @@ hyperlink==18.0.0
 idna==2.6
 incremental==17.5.0
 lxml==4.2.1
-nltk==3.3
+nltk==3.4.5
 numpy==1.14.3
 oauthlib==2.1.0
 pandas==0.23.0
