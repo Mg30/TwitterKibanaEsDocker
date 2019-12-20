@@ -41,6 +41,6 @@ textblob==0.15.1
 textblob-fr==0.2.0
 tweepy==3.6.0
 Twisted==19.7.0
-urllib3==1.22
+urllib3==1.24.2
 w3lib==1.19.0
 zope.interface==4.5.0
